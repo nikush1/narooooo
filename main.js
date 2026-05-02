@@ -23,6 +23,9 @@ const initEmailJS = () => {
 
 /* ── VIDEO DATA ── */
 const VIDEO_URLS = [
+  "https://youtube.com/shorts/vhPPmTn2W2g",
+  "https://youtube.com/shorts/GZQA6iZxlcg?si=R8rIjdhsSN3WfbmY",
+  "https://youtube.com/shorts/VWti8jfHGJY?si=y5m41bwKhkqj1-HY",
   "https://www.youtube.com/embed/lz4s5zU7Bo0",
   "https://youtube.com/shorts/EdgAYZ2Hq9g?si=SBffhKz71hy2zcQo",
   "https://www.youtube.com/embed/j6ympOT2sXc",
