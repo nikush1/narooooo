@@ -33,11 +33,8 @@ const VIDEO_URLS = [
   "https://youtube.com/embed/DGs_9L6PwrA",
   "https://youtube.com/shorts/PQsPjbexW0o",
   "https://www.youtube.com/shorts/_doFcCKT92A",
-  "https://www.instagram.com/reel/DOlQhOBidrr/",
-  "https://www.instagram.com/reel/DI6fvdkomzh/",
-  "https://www.instagram.com/reel/DNnOoPXzQ9U/",
-   "https://youtu.be/JUniWk39d2I",
-  "https://www.instagram.com/reel/DOiMIqAjMMd/"
+  "https://youtube.com/shorts/jFRUQFfjmXE",
+  "https://youtube.com/shorts/Ef9tXPJFoAg?feature=share",
 ];
 
 /* IDs that are actually shorts even if URL says /embed/ */
