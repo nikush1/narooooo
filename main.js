@@ -23,6 +23,7 @@ const initEmailJS = () => {
 
 /* ── VIDEO DATA ── */
 const VIDEO_URLS = [
+   
   "https://youtube.com/shorts/vhPPmTn2W2g",
   "https://youtube.com/shorts/GZQA6iZxlcg?si=R8rIjdhsSN3WfbmY",
   "https://youtube.com/shorts/VWti8jfHGJY?si=y5m41bwKhkqj1-HY",
@@ -31,7 +32,7 @@ const VIDEO_URLS = [
   "https://www.youtube.com/embed/j6ympOT2sXc",
   "https://www.youtube.com/embed/HHviymdkkBc",
   "https://youtube.com/embed/DGs_9L6PwrA",
-  "https://youtube.com/shorts/PQsPjbexW0o",
+  "https://youtube.com/PQsPjbexW0o",
   "https://www.youtube.com/shorts/_doFcCKT92A",
   "https://www.instagram.com/reel/DOlQhOBidrr/",
   "https://www.instagram.com/reel/DI6fvdkomzh/",
