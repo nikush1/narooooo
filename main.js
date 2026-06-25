@@ -38,16 +38,31 @@ const VIDEO_URLS = [
   "https://youtube.com/shorts/Ef9tXPJFoAg?feature=share",
 ];
 
+const PROJECT_COPY = [
+  { title:'High-Energy Vertical Edit', description:'A compact social edit shaped around pace, hook clarity, and clean mobile viewing.' },
+  { title:'Creator-Led Reel Edit', description:'Short-form editing with tighter rhythm, visual emphasis, and platform-ready delivery.' },
+  { title:'Social Story Cutdown', description:'A fast vertical piece built to make the key message clear in the first few seconds.' },
+  { title:'Featured Brand Film', description:'Long-form pacing, structure, and polish for a more cinematic presentation.' },
+  { title:'Performance Reel Edit', description:'A short-form edit focused on clarity, timing, and stronger visual momentum.' },
+  { title:'Narrative Video Edit', description:'A structured edit for longer viewing, balancing story flow with clean transitions.' },
+  { title:'Brand Communication Edit', description:'A polished video edit designed to make the message easier to understand and trust.' },
+  { title:'Event Highlight Cut', description:'A highlight edit shaped around useful moments, energy, and recap clarity.' },
+  { title:'Campaign Video Edit', description:'A concise edit built for presentation, brand tone, and audience comprehension.' },
+  { title:'Vertical Social Edit', description:'A mobile-first cut with direct pacing, readable moments, and clean export delivery.' },
+  { title:'Creator Content Edit', description:'An edit that keeps personality intact while improving structure and finish.' },
+  { title:'Short-Form Motion Edit', description:'A vertical edit supported by simple motion, sound rhythm, and clear sequencing.' }
+];
+
 /* IDs that are actually shorts even if URL says /embed/ */
 const KNOWN_SHORT_IDS = new Set(["DGs_9L6PwrA", "lXhpxEu82gY"]);
 
 /* ── TESTIMONIAL DATA ── */
 const TESTIMONIAL_DATA = [
-  { initials:'GD', name:'GDG Bhilai', company:'Google Developers Group', rating:5, kpi:'30% retention boost', text:'Narottam transformed our event content into cinematic recaps that felt premium and retained attention from a technical audience.' },
-  { initials:'SS', name:'Santosh Suna', company:'Content Creator', rating:5, kpi:'15+ videos delivered', text:'He was consistent, fast, and sharp with pacing. Every edit came back stronger than the last without requiring rounds of correction.' },
-  { initials:'NL', name:'Nadavi Loans', company:'Financial Services Brand', rating:5, kpi:'100% on-time delivery', text:'Complex messaging became clear, modern, and conversion-focused. The videos looked polished and landed with the right audience.' },
-  { initials:'TS', name:'Techstars Weekend', company:'Startup Event', rating:5, kpi:'Same-day highlight reel', text:'The turnaround under deadline pressure was exceptional. We had a finished recap while the event still had momentum online.' },
-  { initials:'KP', name:'Kriti Priya', company:'Personal Brand', rating:5, kpi:'Stronger audience response', text:'The storytelling, rhythm, and polish immediately elevated my brand. Viewers noticed the difference after the first few uploads.' }
+  { initials:'GD', name:'GDG Bhilai', company:'Community Lead / Developer Community', rating:5, kpi:'Event recap', text:'Narottam shaped our event footage into a clean recap with strong pacing and a more premium feel than the raw material suggested.' },
+  { initials:'SS', name:'Santosh Suna', company:'Content Creator', rating:5, kpi:'Short-form edits', text:'He was consistent with delivery and easy to work with. The edits came back tighter, cleaner, and better structured each time.' },
+  { initials:'NL', name:'Nadavi Loans', company:'Client Team / Financial Services', rating:5, kpi:'Explainer content', text:'He helped simplify the message and made the final videos feel clearer and more polished for our audience.' },
+  { initials:'TS', name:'Techstars Weekend', company:'Event Organizer / Startup Event', rating:5, kpi:'Deadline work', text:'He handled the pressure of event content well and kept the edit moving without losing the important moments.' },
+  { initials:'KP', name:'Kriti Priya', company:'Personal Brand Creator', rating:5, kpi:'Brand polish', text:'The edits felt more intentional and professional, with better rhythm and a stronger presentation for my content.' }
 ];
 
 /* ── STATE ── */
@@ -62,18 +77,13 @@ const appState = {
 document.addEventListener('DOMContentLoaded', () => {
   initEmailJS();
   initTheme();
-  initCursor();
   initNav();
   initMobileMenu();
-  initHeroCanvas();
-  initHeroTilt();
   initHeroNameReveal();
   initScrollReveal();
   initCounters();
   initSkillBars();
-  initTiltCards();
   initGlassTiltHighlights();
-  initMagneticButtons();
   initServiceSpotlight();
   initFeaturedVideo();
   initNetflixGallery();
@@ -83,21 +93,13 @@ document.addEventListener('DOMContentLoaded', () => {
   initProgress();
   initForm();
   initSmoothScroll();
-  initParallax();
 });
 
 /* ═══════════════════ THEME ═══════════════════ */
 function initTheme() {
-  const btn = $('#themeBtn');
   const html = document.documentElement;
-  const saved = localStorage.getItem('ns-theme') || 'dark';
-  html.setAttribute('data-theme', saved);
-  btn.addEventListener('click', () => {
-    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', next);
-    localStorage.setItem('ns-theme', next);
-    if (window._canvasColorUpdate) window._canvasColorUpdate();
-  });
+  html.setAttribute('data-theme', 'dark');
+  localStorage.removeItem('ns-theme');
 }
 
 /* ═══════════════════ CURSOR ═══════════════════ */
@@ -123,7 +125,7 @@ function initCursor() {
     requestAnimationFrame(raf);
   })();
 
-  const hoverSel = 'a,button,.exp-card,.testimonial-card,.tool-tile,.nf-card,.srv-tile,.pill,.filt,.ci,.video-modal-close,.testimonial-btn,.nf-btn';
+  const hoverSel = 'a,button,.exp-card,.testimonial-card,.tool-tile,.cert-card,.ai-tool-card,.nf-card,.srv-tile,.pill,.filt,.ci,.video-modal-close,.testimonial-btn,.nf-btn';
   $$(hoverSel).forEach(el => {
     el.addEventListener('mouseenter', () => document.body.classList.add('cur-link'));
     el.addEventListener('mouseleave', () => document.body.classList.remove('cur-link'));
@@ -337,7 +339,7 @@ function initTiltCards() {
 
 /* ═══════════════════ GLASS TILT HIGHLIGHTS ═══════════════════ */
 function initGlassTiltHighlights() {
-  $$('.srv-tile,.testimonial-card,.ci,.exp-card,.nf-card').forEach(card => {
+  $$('.srv-tile,.testimonial-card,.ci,.exp-card,.cert-card,.ai-tool-card,.nf-card').forEach(card => {
     if (!card.querySelector('.glass-highlight')) {
       const glow = document.createElement('span');
       glow.className = 'glass-highlight';
@@ -372,7 +374,7 @@ function initMagneticButtons() {
 
 /* ═══════════════════ SERVICE SPOTLIGHT ═══════════════════ */
 function initServiceSpotlight() {
-  $$('.srv-tile').forEach(tile => {
+  $$('.srv-tile,.ai-tool-card').forEach(tile => {
     tile.addEventListener('mousemove', e => {
       const r = tile.getBoundingClientRect();
       tile.style.setProperty('--sx', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
@@ -465,7 +467,7 @@ function buildVideoMeta(rawUrl, provider, kind, id) {
 
 /* ═══════════════════ NETFLIX GALLERY ═══════════════════ */
 function initNetflixGallery() {
-  const all = VIDEO_URLS.map(detectVideo).filter(Boolean);
+  const all = VIDEO_URLS.map((url, index) => detectVideo(url, index)).filter(Boolean);
   appState.gallery.all = all;
   appState.gallery.reels = all.filter(v => v.kind === 'reel');
   appState.gallery.longform = all.filter(v => v.kind === 'long');
@@ -491,6 +493,7 @@ function renderNetflixRow(key, track, countEl) {
 }
 
 function createNetflixCard(video, idx) {
+  const copy = PROJECT_COPY[idx % PROJECT_COPY.length] || {};
   const card = document.createElement('article');
   card.className = `nf-card ${video.layout === 'vertical' ? 'nf-vertical' : 'nf-horizontal'}`;
   card.dataset.videoId = video.id;
@@ -540,10 +543,10 @@ function createNetflixCard(video, idx) {
   info.className = 'nf-info';
   const tag = document.createElement('div');
   tag.className = 'nf-tag';
-  tag.textContent = video.caption;
+  tag.textContent = copy.description || video.caption;
   const title = document.createElement('div');
   title.className = 'nf-title';
-  title.textContent = video.title;
+  title.textContent = copy.title || video.title;
   info.appendChild(tag); info.appendChild(title);
   card.appendChild(info);
 
@@ -748,7 +751,7 @@ function updateTestimonialPosition(skipTransition = false) {
   const track = $('#testimonialTrack');
   if (!track || !track.children.length) return;
   const first = track.children[0];
-  const gap = 22;
+  const gap = 14;
   appState.testimonial.cardWidth = first.getBoundingClientRect().width + gap;
   if (skipTransition) track.style.transition = 'none';
   const viewport = track.parentElement?.getBoundingClientRect().width || 0;
@@ -922,7 +925,7 @@ function initForm() {
 
       // Reset after 3 seconds
       setTimeout(() => {
-        if (submitText) submitText.textContent = 'Send Message';
+        if (submitText) submitText.textContent = 'Send Inquiry';
         if (submitArrow) submitArrow.innerHTML = '&rarr;';
         submitBtn.disabled = false;
         nameInput.value = '';
@@ -934,7 +937,7 @@ function initForm() {
       }, 3000);
     } catch (error) {
       console.error('Email submission error:', error);
-      if (submitText) submitText.textContent = 'Send Message';
+      if (submitText) submitText.textContent = 'Send Inquiry';
       if (submitArrow) submitArrow.innerHTML = '&rarr;';
       submitBtn.disabled = false;
       
